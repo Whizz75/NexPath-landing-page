@@ -1,86 +1,97 @@
-// src/components/Navbar.jsx
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react"
+import { Menu, X } from "lucide-react"
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const handleGetStarted = () => {
+    const hostedUrl = import.meta.env.VITE_SIGNUP_URL || "http://localhost:5174/auth/sign-up"
+    window.location.href = hostedUrl
+  }
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "Features", href: "/#features" },
-    { name: "About Us", href: "/#about" },
-    { name: "Contact Us", href: "/#contact" },
-  ];
+    { name: "Features", href: "/features" },
+    { name: "About", href: "/about" },
+  ]
 
   return (
-    <header className="border-b bg-background/80 backdrop-blur-md sticky top-0 z-50">
-      <div className="container flex items-center justify-between py-4">
-        {/* Logo */}
-        
-        <Link to="/" className="flex items-center gap-2">
-          <img src="src/assets/logo.png" alt="logo" className="w-12"/>
-          <span className="text-xl font-semibold text-foreground/80">NexPath</span>
-        </Link>
-
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-            >
-              {item.name}
-            </a>
-          ))}
-        </nav>
-
-        {/* CTA buttons */}
-        <div className="hidden md:flex space-x-3">
-          <Link to="/signin">
-            <Button variant="outline">Sign In</Button>
-          </Link>
-          <Link to="/request-access">
-            <Button>Request Access</Button>
-          </Link>
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-background/90 backdrop-blur-lg border-b border-border"
+          : "bg-background/80 backdrop-blur-md"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto flex justify-between items-center py-4 px-6 text-slate-100">
+        {/* Logo + Brand */}
+        <div className="flex items-center gap-3">
+          <img src="/logo.png" alt="NexPath Logo" className="w-8 h-8" />
+          <h1 className="text-2xl font-semibold tracking-wide text-teal-400">
+            NexPath
+          </h1>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Centered Desktop Navigation */}
+        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 gap-8">
+          {navItems.map(({ name, href }) => (
+            <a
+              key={name}
+              href={href}
+              className="text-slate-300 hover:text-teal-400 transition-colors duration-200"
+            >
+              {name}
+            </a>
+          ))}
+        </div>
+
+        {/* CTA Button */}
+        <div className="hidden md:block">
+          <Button
+            onClick={handleGetStarted}
+            className="bg-teal-500 hover:bg-teal-600 text-white shadow-md shadow-teal-500/30"
+          >
+            Sign Up
+          </Button>
+        </div>
+
+        {/* Mobile Menu Toggle */}
         <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden p-2 text-foreground/80"
+          className="md:hidden text-slate-300"
+          onClick={() => setMobileOpen(!mobileOpen)}
         >
-          {open ? <X /> : <Menu />}
+          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Nav */}
-      {open && (
-        <div className="md:hidden border-t bg-background">
-          <nav className="flex flex-col p-4 space-y-3">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="text-sm font-medium text-foreground/80 hover:text-primary"
-              >
-                {item.name}
-              </a>
-            ))}
-            <Link to="/signin">
-              <Button variant="outline" className="w-full mt-2">
-                Sign In
-              </Button>
-            </Link>
-            <Link to="/request-access">
-              <Button className="w-full mt-2">Request Access</Button>
-            </Link>
-          </nav>
+      {/* Mobile Dropdown */}
+      {mobileOpen && (
+        <div className="md:hidden bg-background/95 backdrop-blur-xl border-t border-border py-4 px-6 flex flex-col gap-4 text-slate-200">
+          {navItems.map(({ name, href }) => (
+            <a
+              key={name}
+              href={href}
+              className="text-slate-300 hover:text-teal-400 transition-colors duration-200"
+            >
+              {name}
+            </a>
+          ))}
+          <Button
+            onClick={handleGetStarted}
+            className="bg-teal-500 hover:bg-teal-600 text-white w-full shadow-sm"
+          >
+            Sign Up
+          </Button>
         </div>
       )}
-    </header>
-  );
+    </nav>
+  )
 }

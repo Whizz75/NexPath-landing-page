@@ -8,6 +8,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -41,78 +42,91 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Color tokens (Slate + Teal accent theme) */
+/* --- Light mode --- */
 :root {
   --radius: 0.625rem;
-  --background: oklch(0.98 0.01 260);
-  --foreground: oklch(0.15 0.03 260);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0.03 260);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.03 260);
-  --primary: oklch(0.58 0.15 190); /* teal-green accent */
-  --primary-foreground: oklch(0.98 0.02 250);
-  --secondary: oklch(0.93 0.02 250);
-  --secondary-foreground: oklch(0.22 0.04 260);
-  --muted: oklch(0.94 0.01 260);
-  --muted-foreground: oklch(0.55 0.04 257);
-  --accent: oklch(0.94 0.01 260);
-  --accent-foreground: oklch(0.22 0.04 260);
-  --destructive: oklch(0.55 0.2 25);
-  --border: oklch(0.90 0.01 260);
-  --input: oklch(0.90 0.01 260);
-  --ring: oklch(0.65 0.06 260);
-  --chart-1: oklch(0.58 0.15 190);
-  --chart-2: oklch(0.72 0.08 220);
-  --chart-3: oklch(0.4 0.05 230);
-  --chart-4: oklch(0.82 0.15 140);
-  --chart-5: oklch(0.78 0.16 90);
-  --sidebar: oklch(0.97 0.01 260);
-  --sidebar-foreground: oklch(0.15 0.03 260);
-  --sidebar-primary: oklch(0.58 0.15 190);
-  --sidebar-primary-foreground: oklch(0.98 0.02 250);
-  --sidebar-accent: oklch(0.93 0.02 250);
-  --sidebar-accent-foreground: oklch(0.22 0.04 260);
-  --sidebar-border: oklch(0.90 0.01 260);
-  --sidebar-ring: oklch(0.65 0.06 260);
+
+  --background: #0B1B2B;          /* deep navy */
+  --foreground: #E0E6ED;          /* slate/light foreground */
+  --card: #14253D;                /* slightly lighter navy for cards */
+  --card-foreground: #E0E6ED;
+  --popover: #14253D;
+  --popover-foreground: #E0E6ED;
+
+  --primary: #1AA7A3;             /* teal */
+  --primary-foreground: #ffffff;
+  --secondary: #2C3E50;           /* slate variation */
+  --secondary-foreground: #E0E6ED;
+  --muted: #324A63;               /* muted slate for background elements */
+  --muted-foreground: #B0BCCB;
+  --accent: #1AA7A3;
+  --accent-foreground: #ffffff;
+
+  --destructive: #E74C3C;
+  --border: #334A5E;
+  --input: #334A5E;
+  --ring: #1AA7A3;
+
+  --chart-1: #1AA7A3;
+  --chart-2: #2C3E50;
+  --chart-3: #E0E6ED;
+  --chart-4: #4DB6AC;
+  --chart-5: #81C784;
+
+  --sidebar: #0B1B2B;
+  --sidebar-foreground: #E0E6ED;
+  --sidebar-primary: #1AA7A3;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #2C3E50;
+  --sidebar-accent-foreground: #1AA7A3;
+  --sidebar-border: #334A5E;
+  --sidebar-ring: #1AA7A3;
 }
 
-/* Dark mode */
+/* --- Dark mode --- */
 .dark {
-  --background: oklch(0.16 0.03 260);
-  --foreground: oklch(0.98 0.02 250);
-  --card: oklch(0.20 0.03 260);
-  --card-foreground: oklch(0.98 0.02 250);
-  --primary: oklch(0.68 0.14 190);
-  --primary-foreground: oklch(0.12 0.03 260);
-  --secondary: oklch(0.27 0.04 260);
-  --secondary-foreground: oklch(0.98 0.02 250);
-  --muted: oklch(0.27 0.04 260);
-  --muted-foreground: oklch(0.65 0.05 260);
-  --accent: oklch(0.27 0.04 260);
-  --accent-foreground: oklch(0.98 0.02 250);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.55 0.03 260);
+  --background: #0B1B2B;
+  --foreground: #E0E6ED;
+  --card: #14253D;
+  --card-foreground: #E0E6ED;
+  --popover: #14253D;
+  --popover-foreground: #E0E6ED;
+
+  --primary: #1AA7A3;
+  --primary-foreground: #ffffff;
+  --secondary: #2C3E50;
+  --secondary-foreground: #E0E6ED;
+  --muted: #324A63;
+  --muted-foreground: #B0BCCB;
+  --accent: #1AA7A3;
+  --accent-foreground: #ffffff;
+
+  --destructive: #E74C3C;
+  --border: #334A5E;
+  --input: #334A5E;
+  --ring: #1AA7A3;
+
+  --chart-1: #1AA7A3;
+  --chart-2: #2C3E50;
+  --chart-3: #E0E6ED;
+  --chart-4: #4DB6AC;
+  --chart-5: #81C784;
+
+  --sidebar: #14253D;
+  --sidebar-foreground: #E0E6ED;
+  --sidebar-primary: #1AA7A3;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #2C3E50;
+  --sidebar-accent-foreground: #1AA7A3;
+  --sidebar-border: #334A5E;
+  --sidebar-ring: #1AA7A3;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-
   body {
-    @apply bg-background text-foreground antialiased min-h-screen;
-  }
-
-  /* Add global content spacing */
-  main,
-  section {
-    @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12;
-  }
-
-  header,
-  footer {
-    @apply px-6 sm:px-8 lg:px-12;
+    @apply bg-background text-foreground;
   }
 }
