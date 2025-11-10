@@ -1,17 +1,21 @@
-import Navbar from "./components/Navbar"
-import Hero from "./components/Hero"
-import Features from "./components/Features"
-import CTASection from "./components/CTASection"
-import Footer from "./components/Footer"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Navbar from "@/components/Navbar"
+import Footer from "@/components/Footer"
+
+import Home from "@/pages/Home"
+import FeaturesPage from "@/pages/FeaturesPage"
+import AboutPage from "@/pages/AboutPage"
 
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <Router>
       <Navbar />
-      <Hero />
-      <Features />
-      <CTASection />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/features" element={<FeaturesPage />} />
+        <Route path="/about" element={<AboutPage />} />
+      </Routes>
       <Footer />
-    </div>
+    </Router>
   )
 }

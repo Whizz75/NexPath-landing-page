@@ -4,7 +4,6 @@ import { motion } from "framer-motion"
 export default function CTASection() {
   return (
     <section className="relative py-20 text-center overflow-hidden">
-      {/* Animated Gradient Background */}
       <motion.div
         className="absolute inset-0 -z-10 bg-gradient-to-r from-teal-500 via-teal-600 to-teal-500 opacity-50"
         animate={{ x: ["0%", "50%", "0%"] }}
@@ -30,7 +29,7 @@ export default function CTASection() {
           <Button
             size="lg"
             className="bg-white text-teal-700 hover:bg-slate-100 shadow-lg shadow-teal-500/30"
-            onClick={() => window.open("http://localhost:5174/auth/sign-up", "_blank")}
+            onClick={() => window.open("https://nexpath-app.onrender.com", "_blank")}
           >
             Get Started
           </Button>
@@ -38,7 +37,7 @@ export default function CTASection() {
             size="lg"
             variant="outline"
             className="border-white text-white hover:bg-white hover:text-teal-700 shadow-lg shadow-teal-500/20"
-            onClick={() => window.open("http://localhost:5174/request-access", "_blank")}
+            onClick={() => window.open("https://nexpath-app.onrender.com", "_blank")}
           >
             Request Access
           </Button>

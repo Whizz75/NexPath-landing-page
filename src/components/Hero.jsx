@@ -8,7 +8,7 @@ export default function Hero() {
   }
 
   const handleRequestAccess = () => {
-    const url = import.meta.env.VITE_REQUEST_ACCESS_URL || "http://localhost:5174/request-access"
+    const url = import.meta.env.VITE_REQUEST_ACCESS_URL || "http://localhost:5174/auth/request-access"
     window.location.href = url
   }
 

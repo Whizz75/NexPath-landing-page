@@ -32,7 +32,6 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center py-4 px-6 text-slate-100">
-        {/* Logo + Brand */}
         <div className="flex items-center gap-3">
           <img src="/logo.png" alt="NexPath Logo" className="w-8 h-8" />
           <h1 className="text-2xl font-semibold tracking-wide text-teal-400">
@@ -40,7 +39,6 @@ export default function Navbar() {
           </h1>
         </div>
 
-        {/* Centered Desktop Navigation */}
         <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 gap-8">
           {navItems.map(({ name, href }) => (
             <a
@@ -53,7 +51,6 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* CTA Button */}
         <div className="hidden md:block">
           <Button
             onClick={handleGetStarted}
@@ -63,7 +60,6 @@ export default function Navbar() {
           </Button>
         </div>
 
-        {/* Mobile Menu Toggle */}
         <button
           className="md:hidden text-slate-300"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -72,7 +68,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Dropdown */}
       {mobileOpen && (
         <div className="md:hidden bg-background/95 backdrop-blur-xl border-t border-border py-4 px-6 flex flex-col gap-4 text-slate-200">
           {navItems.map(({ name, href }) => (

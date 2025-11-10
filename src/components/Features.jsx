@@ -22,7 +22,6 @@ export default function Features() {
 
   return (
     <section className="relative bg-background text-slate-100 py-20 px-6 overflow-hidden">
-      {/* Animated Gradient Background */}
       <motion.div
         className="absolute inset-0 -z-10 bg-gradient-to-r from-teal-600 via-teal-400 to-teal-600 opacity-20"
         animate={{ x: ["0%", "50%", "0%"] }}
