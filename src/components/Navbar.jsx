@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button"
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
+import { Link, useLocation } from "react-router-dom"
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -12,15 +14,20 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Close mobile menu when navigation happens
+  useEffect(() => {
+    setMobileOpen(false)
+  }, [location])
+
   const handleGetStarted = () => {
     const hostedUrl = import.meta.env.VITE_SIGNUP_URL || "http://localhost:5174/auth/sign-up"
     window.location.href = hostedUrl
   }
 
   const navItems = [
-    { name: "Home", href: "/" },
-    { name: "Features", href: "/features" },
-    { name: "About", href: "/about" },
+    { name: "Home", path: "/" },
+    { name: "Features", path: "/features" },
+    { name: "About", path: "/about" },
   ]
 
   return (
@@ -32,6 +39,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center py-4 px-6 text-slate-100">
+        {/* Logo */}
         <div className="flex items-center gap-3">
           <img src="/logo.png" alt="NexPath Logo" className="w-8 h-8" />
           <h1 className="text-2xl font-semibold tracking-wide text-teal-400">
@@ -39,18 +47,22 @@ export default function Navbar() {
           </h1>
         </div>
 
+        {/* Desktop Nav */}
         <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 gap-8">
-          {navItems.map(({ name, href }) => (
-            <a
+          {navItems.map(({ name, path }) => (
+            <Link
               key={name}
-              href={href}
-              className="text-slate-300 hover:text-teal-400 transition-colors duration-200"
+              to={path}
+              className={`text-slate-300 hover:text-teal-400 transition-colors duration-200 ${
+                location.pathname === path ? "text-teal-400 font-medium" : ""
+              }`}
             >
               {name}
-            </a>
+            </Link>
           ))}
         </div>
 
+        {/* Sign Up Button */}
         <div className="hidden md:block">
           <Button
             onClick={handleGetStarted}
@@ -60,6 +72,7 @@ export default function Navbar() {
           </Button>
         </div>
 
+        {/* Mobile Menu Toggle */}
         <button
           className="md:hidden text-slate-300"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -68,16 +81,17 @@ export default function Navbar() {
         </button>
       </div>
 
+      {/* Mobile Menu */}
       {mobileOpen && (
         <div className="md:hidden bg-background/95 backdrop-blur-xl border-t border-border py-4 px-6 flex flex-col gap-4 text-slate-200">
-          {navItems.map(({ name, href }) => (
-            <a
+          {navItems.map(({ name, path }) => (
+            <Link
               key={name}
-              href={href}
+              to={path}
               className="text-slate-300 hover:text-teal-400 transition-colors duration-200"
             >
               {name}
-            </a>
+            </Link>
           ))}
           <Button
             onClick={handleGetStarted}
